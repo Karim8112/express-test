@@ -1,6 +1,5 @@
 import express from "express";
 import axios from "axios";
-import Product from "./my-app/app/products/[productId]/page.js";
 const app = express();
 
 const config = {
