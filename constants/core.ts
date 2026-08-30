@@ -1,6 +1,6 @@
 export const config = {
   port: 8000,
-  host: "localhost",
+  host: "express-test-five-delta.vercel.app",
 };
 
 export const baseURL = "api/v1";
