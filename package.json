@@ -15,8 +15,8 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "start": "index.ts",
-    "dev": "tsc index.ts"
+    "start": "tsx index.ts",
+    "dev": "tsc"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
