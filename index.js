@@ -32,9 +32,9 @@ app.listen(config.port, config.host, () => {
   console.log(`Server is running on http://${config.host}:${config.port}`);
 });
 
-// app.get("/about", (req: express.Request, res: express.Response) => {
-//   res.json({ test: "test" });
-// });
+app.get("/about", (req, res) => {
+  res.json({ test: "test" });
+});
 
 // app.use(express.static("static"));
 
