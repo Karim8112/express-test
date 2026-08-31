@@ -2,15 +2,14 @@ import express from "express";
 
 // import fs from "fs";
 const config = {
-  port: process.env.PORT || 3000,
+  port: 3000,
   host: "localhost",
 };
-import superagent from "superagent";
 
 const app = express();
 
 // // home page route
-app.get("/", (req, res) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   // superagent
   //   .get("https://dummyjson.com/recipes")
   //   .then((response) => {
@@ -26,6 +25,7 @@ app.get("/", (req, res) => {
   //     res.status(404).end("Error fetching data");
   //     res.json({ error: "Error fetching data", details: error.message });
   //   });
+  res.json({ test: "test" });
 });
 
 app.listen(config.port, config.host, () => {
