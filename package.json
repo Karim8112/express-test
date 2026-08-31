@@ -1,7 +1,7 @@
 {
-  "name": "express",
+  "name": "express-app",
   "version": "1.0.0",
-  "description": "test",
+  "description": "Express application",
   "homepage": "https://github.com/Karim8112/express-test#readme",
   "bugs": {
     "url": "https://github.com/Karim8112/express-test/issues"
@@ -15,9 +15,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node --loader tsx index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node  index.ts",
+    "dev": "ts-node index.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
@@ -32,5 +31,8 @@
     "express": "^5.2.1",
     "slugify": "^1.6.9",
     "superagent": "^10.3.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
