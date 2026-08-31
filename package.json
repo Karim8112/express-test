@@ -13,10 +13,10 @@
   "license": "ISC",
   "author": "Karim",
   "type": "module",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "tsx index.ts",
-    "dev": "ts-node index.ts"
+    "start": "index.js",
+    "dev": "node index.js"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
