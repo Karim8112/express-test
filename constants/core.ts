@@ -1,6 +1,6 @@
 export const config = {
   port: 8000,
-  host: "express-test-five-delta.vercel.app",
+  host: "dimgrey-ibis-276175.hostingersite.com",
 };
 
 export const baseURL = "api/v1";
