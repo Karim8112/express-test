@@ -16,16 +16,15 @@ app.get("/", (req, res) => {
   res.json({ status: "success", message: "API is running" });
 });
 
-app.use(`/${baseURL}`, tourRouterPOST);
-app.use(`/${baseURL}`, tourRouterGETAll);
-app.use(`/${baseURL}`, tourRouterGET);
-app.use(`/${baseURL}`, tourRouterDELETE);
-app.use(`/${baseURL}`, tourRouterPATCH);
+// app.use(`/${baseURL}`, tourRouterPOST);
+// app.use(`/${baseURL}`, tourRouterGETAll);
+// app.use(`/${baseURL}`, tourRouterGET);
+// app.use(`/${baseURL}`, tourRouterDELETE);
+// app.use(`/${baseURL}`, tourRouterPATCH);
 
 // Server setup
-const port = process.env.PORT || config.port || 3000;
-const host = "0.0.0.0"; // Necessary for many cloud deployments
+const port = process.env.PORT;
 
-app.listen(Number(port), host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
+app.listen(Number(port), config.host, () => {
+  console.log(`Server is running on http://${config.host}:${port}`);
 });

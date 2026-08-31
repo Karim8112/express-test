@@ -16,6 +16,6 @@ app.use(`/${baseURL}`, tourRouterGET);
 app.use(`/${baseURL}`, tourRouterDELETE);
 app.use(`/${baseURL}`, tourRouterPATCH);
 
-app.listen(config.port, config.host, () => {
-  console.log(`App running on port ${config.port}...`);
-});
+// app.listen(config.port, config.host, () => {
+//   console.log(`App running on port ${config.port}...`);
+// });
