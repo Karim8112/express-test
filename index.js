@@ -2,7 +2,7 @@ import express from "express";
 
 // import fs from "fs";
 const config = {
-  port: Number(process.env.PORT) || 3000,
+  port: process.env.PORT || 3000,
   host: "localhost",
 };
 import superagent from "superagent";
@@ -10,7 +10,7 @@ import superagent from "superagent";
 const app = express();
 
 // // home page route
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/", (req, res) => {
   // superagent
   //   .get("https://dummyjson.com/recipes")
   //   .then((response) => {
