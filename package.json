@@ -1,7 +1,7 @@
 {
-  "name": "express-app",
+  "name": "event-app",
   "version": "1.0.0",
-  "description": "Express application",
+  "description": "Express TypeScript application",
   "homepage": "https://github.com/Karim8112/express-test#readme",
   "bugs": {
     "url": "https://github.com/Karim8112/express-test/issues"
@@ -15,9 +15,9 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsx index.ts",
+    "dev": "ts-node index.ts",
     "build": "tsc",
-    "start": "tsx index.ts"
+    "start": "node index.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

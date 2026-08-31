@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist", // 👈 توجيه الملفات المترجمة إلى مجلد dist
     "target": "ES2022", // أو أي إصدار حديث يدعمه Node.js الخاص بك
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "ignoreDeprecations": "6.0",
     "rootDir": "./",
 
