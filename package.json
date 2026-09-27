@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "tsx index.ts",
     "build": "tsc",
+    "postinstall": "npm run build",
     "start": "node index.js"
   },
   "devDependencies": {
