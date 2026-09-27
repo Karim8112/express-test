@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.2.0",
     "@types/superagent": "^8.1.11",
     "ts-node": "^10.9.2",
@@ -30,11 +31,21 @@
   },
   "dependencies": {
     "axios": "^1.19.0",
+    "dotenv": "^18.0.4",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.6.0",
+    "mongoose": "^9.10.2",
     "slugify": "^1.6.9",
     "superagent": "^10.3.0"
   },
   "engines": {
     "node": ">=18"
+  },
+  "allowScripts": {
+    "mongoose@9.10.2": true,
+    "jsonwebtoken@9.0.3": true,
+    "dotenv@18.0.4": true,
+    "mongodb@7.6.0": true
   }
 }

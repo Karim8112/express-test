@@ -1,0 +1,1 @@
+{"version":3,"file":"PATCH.d.ts","sourceRoot":"","sources":["../../../controllers/Tours/PATCH.ts"],"names":[],"mappings":"AACA,OAAO,OAAO,MAAM,SAAS,CAAC;AAG9B,iBAAS,SAAS,CAChB,GAAG,EAAE,OAAO,CAAC,OAAO,CAAC;IAAE,EAAE,EAAE,MAAM,CAAA;CAAE,CAAC,EACpC,GAAG,EAAE,OAAO,CAAC,QAAQ,QAwCtB;eAIc,SAAS"}

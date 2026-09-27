@@ -1,0 +1,1 @@
+{"version":3,"file":"DELETE.d.ts","sourceRoot":"","sources":["../../../controllers/Project/DELETE.ts"],"names":[],"mappings":"AACA,OAAO,OAAO,MAAM,SAAS,CAAC;AAE9B,iBAAe,aAAa,CAC1B,GAAG,EAAE,OAAO,CAAC,OAAO,CAAC;IAAE,EAAE,EAAE,MAAM,CAAA;CAAE,CAAC,EACpC,GAAG,EAAE,OAAO,CAAC,QAAQ,iBAYtB;eAIc,aAAa"}

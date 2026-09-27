@@ -1,0 +1,1 @@
+{"version":3,"file":"GET.d.ts","sourceRoot":"","sources":["../../../controllers/Team/GET.ts"],"names":[],"mappings":"AACA,OAAO,OAAO,MAAM,SAAS,CAAC;AAE9B,iBAAe,WAAW,CACxB,GAAG,EAAE,OAAO,CAAC,OAAO,CAAC;IAAE,EAAE,EAAE,MAAM,CAAA;CAAE,CAAC,EACpC,GAAG,EAAE,OAAO,CAAC,QAAQ,iBAkBtB;eAIc,WAAW"}

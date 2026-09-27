@@ -1,21 +1,35 @@
 import express from "express";
-import { baseURL, config } from "./constants/core.js";
-import tourRouterGETAll from "./routes/test/GET_ALL.js";
-import tourRouterGET from "./routes/test/GET.js";
-import tourRouterPOST from "./routes/test/POST.js";
-import tourRouterPATCH from "./routes/test/PATCH.js";
-import tourRouterDELETE from "./routes/test/DELETE.js";
+import { baseURL } from "./constants/core.js";
+
+// middlewares
+import AddTimeMiddleware from "./middlewares/addTime.js";
+
+// routes
+// import tourRouter from "./routes/Tour.js";
+import TeamRouter from "./routes/Team.js";
+import ProjectRouter from "./routes/Project.js";
+import AuthRouter from "./routes/Auth.js";
+
 const app = express();
 
-// middleware
+//-------- general middleware -------------
+// npm middlewares
 app.use(express.json());
-app.use(`/${baseURL}`, tourRouterPOST);
-app.use(`/${baseURL}`, tourRouterGETAll);
-app.use(`/${baseURL}`, tourRouterGET);
-app.use(`/${baseURL}`, tourRouterGET);
-app.use(`/${baseURL}`, tourRouterDELETE);
-app.use(`/${baseURL}`, tourRouterPATCH);
+app.use(express.static("static"));
 
-// app.listen(config.port, config.host, () => {
-//   console.log(`App running on port ${config.port}...`);
-// });
+// custom middlewares
+app.use(AddTimeMiddleware);
+// -------- routing middleware -------------
+
+app.use(`/${baseURL}`, TeamRouter);
+app.use(`/${baseURL}`, ProjectRouter);
+app.use(`/${baseURL}`, AuthRouter);
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Welcome to the API",
+  });
+});
+
+export default app;

@@ -1,30 +1,12 @@
-import express from "express";
-import { baseURL, config } from "./constants/core.js";
-import tourRouterGETAll from "./routes/test/GET_ALL.js";
-import tourRouterGET from "./routes/test/GET.js";
-import tourRouterPOST from "./routes/test/POST.js";
-import tourRouterPATCH from "./routes/test/PATCH.js";
-import tourRouterDELETE from "./routes/test/DELETE.js";
+import app from "./app.js";
+import dotenv from "dotenv";
+import { config } from "./constants/core.js";
+import MongoConnection from "./mongodb.js";
 
-const app = express();
+dotenv.config({ path: "./config.env" });
 
-// Middleware
-app.use(express.json());
+MongoConnection();
 
-// Routes
-app.get("/", (req, res) => {
-  res.json({ status: "success", message: "API is running" });
-});
-
-// app.use(`/${baseURL}`, tourRouterPOST);
-// app.use(`/${baseURL}`, tourRouterGETAll);
-// app.use(`/${baseURL}`, tourRouterGET);
-// app.use(`/${baseURL}`, tourRouterDELETE);
-// app.use(`/${baseURL}`, tourRouterPATCH);
-
-// Server setup
-const port = process.env.PORT;
-
-app.listen(Number(port), config.host, () => {
-  console.log(`Server is running on http://${config.host}:${port}`);
+app.listen(config.port, config.host, () => {
+  console.log(`App running on port ${config.port}...`);
 });
