@@ -39,6 +39,10 @@ async function login(
       res.status(200).json({
         status: "success",
         token: token,
+        user: {
+          userName: found_user.userName,
+          name: found_user.name,
+        },
       });
     }
   } catch {
