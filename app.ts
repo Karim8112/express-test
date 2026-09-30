@@ -1,6 +1,6 @@
 import express from "express";
 import { baseURL } from "./constants/core.js";
-
+import cors from "cors";
 // middlewares
 import AddTimeMiddleware from "./middlewares/addTime.js";
 
@@ -16,7 +16,8 @@ const app = express();
 // npm middlewares
 app.use(express.json());
 app.use(express.static("static"));
-
+app.use(cors);
+app.options("*", cors());
 // custom middlewares
 app.use(AddTimeMiddleware);
 // -------- routing middleware -------------
