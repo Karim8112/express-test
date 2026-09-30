@@ -18,14 +18,7 @@ app.use(
     credentials: true,
   }),
 );
-app.options(
-  "*",
-  cors({
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  }),
-);
+app.options("*", cors());
 //-------- general middleware -------------
 // npm middlewares
 app.use(express.json());
