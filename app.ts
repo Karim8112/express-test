@@ -11,13 +11,26 @@ import ProjectRouter from "./routes/Project.js";
 import AuthRouter from "./routes/Auth.js";
 
 const app = express();
-
+app.use(
+  cors({
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
+app.options(
+  "*",
+  cors({
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 //-------- general middleware -------------
 // npm middlewares
 app.use(express.json());
 app.use(express.static("static"));
-app.use(cors);
-app.options("*", cors());
+
 // custom middlewares
 app.use(AddTimeMiddleware);
 // -------- routing middleware -------------
