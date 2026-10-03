@@ -7,9 +7,11 @@ async function GetAllProject(req: express.Request, res: express.Response) {
     res.status(200).json({
       status: "sucess",
       results: projects.length,
-      data: { projects },
+      data: projects,
     });
-  } catch {}
+  } catch {
+    res.status(400).json({});
+  }
 }
 
 export default GetAllProject;

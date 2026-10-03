@@ -5,11 +5,16 @@ async function GetAllTeam(req: express.Request, res: express.Response) {
   try {
     const team = await Team.find();
     res.status(200).json({
-      status: "sucess",
+      status: "success",
       results: team.length,
-      data: { team },
+      data: team,
     });
-  } catch {}
+  } catch {
+    res.status(400).json({
+      status: "fail",
+      message: "Failed to fetch teams",
+    });
+  }
 }
 
 export default GetAllTeam;
