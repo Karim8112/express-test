@@ -9,12 +9,7 @@ async function GetTeamById(
 
   try {
     const team_member: typeof Team | null = await Team.findById(id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        ...team_member,
-      },
-    });
+    res.status(200).json(team_member);
   } catch (err) {
     res.status(400).json({
       status: "failed",

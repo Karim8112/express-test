@@ -9,12 +9,7 @@ async function GetProjectById(
 
   try {
     const project: typeof Project | null = await Project.findById(id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        ...project,
-      },
-    });
+    res.status(200).json(project);
   } catch (err) {
     res.status(400).json({
       status: "failed",
