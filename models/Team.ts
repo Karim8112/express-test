@@ -1,76 +1,72 @@
 import mongoose from "mongoose";
 
-type IExperience = {
-  role: string;
-};
-
 const ExperienceSchema = new mongoose.Schema({
   role: {
     type: String,
-    require: true,
+    required: true,
   },
   period: {
     type: String,
-    require: true,
+    required: true,
   },
   company: {
     type: String,
-    require: true,
+    required: true,
   },
   description: {
     type: String,
-    require: false,
+    required: false,
   },
 });
 
 const TeamSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   address: {
     type: String,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
-    require: false,
+    requiredd: false,
   },
   phoneNumberS: {
     type: [String],
-    require: false,
+    required: false,
   },
   summary: {
     type: String,
-    require: true,
+    required: true,
   },
   imageLeft: {
     type: String,
-    require: true,
+    required: true,
   },
   imageRight: {
     type: String,
-    require: false,
+    required: false,
   },
   tags: {
     type: [String],
-    require: false,
+    required: false,
   },
   skills: {
     type: [String],
-    require: true,
+    required: true,
   },
   experience: {
     type: [ExperienceSchema],
-    require: false,
+    required: false,
   },
   education: {
     type: [String],
-    require: true,
+    required: true,
   },
   languages: {
     type: [String],
-    require: true,
+    required: true,
   },
 });
 
