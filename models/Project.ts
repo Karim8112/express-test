@@ -3,27 +3,27 @@ import mongoose from "mongoose";
 const ProjectSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: [true, "please add the project name"],
+    required: [true, "please add the project name"],
   },
   donor: {
     type: String,
-    require: false,
+    required: false,
   },
   value: {
     type: Number,
-    require: false,
+    required: false,
   },
   startDate: {
-    type: Date,
-    require: false,
+    type: String,
+    required: false,
   },
   endDate: {
-    type: Date,
-    require: true,
+    type: String,
+    required: false,
   },
   projectType: {
     type: String,
-    require: [true, "please add the project type"],
+    required: [true, "please add the project type"],
   },
 });
 
