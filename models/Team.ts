@@ -42,7 +42,7 @@ const TeamSchema = new mongoose.Schema({
   },
   imageLeft: {
     type: String,
-    required: true,
+    required: false,
   },
   imageRight: {
     type: String,
