@@ -7,7 +7,7 @@ const multerStorage = multer.diskStorage({
   },
   filename: (request: express.Request, file, cb) => {
     const ext = file.mimetype.split("/")[1];
-    cb(null, `${request.params}.title ?? "team"}.${ext}`);
+    cb(null, `test`);
   },
 });
 
