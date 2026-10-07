@@ -48,7 +48,7 @@ async function login(
     }
   } catch {
     res.status(400).json({
-      status: "filed",
+      status: "failed",
       message: "connection error",
     });
   }
