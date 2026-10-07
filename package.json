@@ -24,6 +24,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.3.0",
     "@types/node": "^26.2.0",
     "@types/superagent": "^8.1.11",
     "ts-node": "^10.9.2",
@@ -37,6 +38,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.6.0",
     "mongoose": "^9.10.2",
+    "multer": "^2.4.0",
     "slugify": "^1.6.9",
     "superagent": "^10.3.0",
     "typescript": "^7.0.2"
@@ -49,6 +51,7 @@
     "jsonwebtoken@9.0.3": true,
     "dotenv@18.0.4": true,
     "mongodb@7.6.0": true,
-    "cors@2.8.6": true
+    "cors@2.8.6": true,
+    "multer@2.4.0": true
   }
 }

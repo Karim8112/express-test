@@ -5,6 +5,11 @@ import GetTeamById from "../controllers/Team/GET.js";
 import patchTeam from "../controllers/Team/PATCH.js";
 import postTeam from "../controllers/Team/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
+import multer from "multer";
+import upload from "../controllers/Team/uploadPhoto.js";
+
+// -----------middlewares----------
+// router.param('id', checkId) // so way better to use this method instead of using chain with every route
 
 const router = express.Router();
 // -----------middlewares----------
@@ -14,7 +19,7 @@ router
   .route(`/team/:id`)
   .delete(protectRoute, DeleteTeam /* ,checkId */)
   .get(GetTeamById /* ,checkId */)
-  .patch(protectRoute, patchTeam /* ,checkId */);
+  .patch(protectRoute, upload, patchTeam /* ,checkId */);
 // tours
 router.route(`/team`).get(GetAllTeam).post(protectRoute, postTeam);
 
