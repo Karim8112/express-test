@@ -1,13 +1,13 @@
 import multer from "multer";
 // import { Team } from "../../models/Team.js";
-
+import express from "express";
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, `static/images/team`);
   },
-  filename: (req, file, cb) => {
+  filename: (request: express.Request, file, cb) => {
     const ext = file.mimetype.split("/")[1];
-    cb(null, `user-${(req as any)?.title ?? "team"}.${ext}`);
+    cb(null, `${request.params}.title ?? "team"}.${ext}`);
   },
 });
 
