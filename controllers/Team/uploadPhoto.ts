@@ -3,11 +3,12 @@ import multer from "multer";
 import express from "express";
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, `static/images/team`);
+    const teamId = req.params.id;
+    cb(null, `static/images/${teamId}/iamgeLeft`);
   },
   filename: (request: express.Request, file, cb) => {
     const ext = file.mimetype.split("/")[1];
-    cb(null, `${String(request.params) ?? "team"} }.${ext}`);
+    cb(null, `imageLeft.${ext}`);
   },
 });
 
