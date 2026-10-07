@@ -1,10 +1,15 @@
 import multer from "multer";
 import fs from "fs"; // Required to create dynamic directories
 import express from "express";
+import path from "path";
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     const teamId = req.params.id;
-    const uploadPath = `static/images/${teamId}/iamgeLeft`;
+    const uploadPath = path.join(
+      process.cwd(),
+      "../public_html/images/team_images",
+      teamId as string,
+    );
     fs.mkdirSync(uploadPath, { recursive: true });
     cb(null, uploadPath);
   },
