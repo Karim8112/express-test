@@ -16,7 +16,7 @@ async function patchTeam(
   const { id } = req.params;
   const updatedBody = {
     ...req.body,
-    imageLeft: req.uploadImageURL ? req.uploadImageURL : "",
+    imageLeft: req.uploadImageURL ? req.uploadImageURL : req.body.imageLeft,
   };
 
   try {
