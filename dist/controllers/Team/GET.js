@@ -4,12 +4,7 @@ async function GetTeamById(req, res) {
     const { id } = req.params;
     try {
         const team_member = await Team.findById(id);
-        res.status(200).json({
-            status: "success",
-            data: {
-                ...team_member,
-            },
-        });
+        res.status(200).json(team_member);
     }
     catch (err) {
         res.status(400).json({

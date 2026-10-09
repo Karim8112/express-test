@@ -4,12 +4,7 @@ async function GetProjectById(req, res) {
     const { id } = req.params;
     try {
         const project = await Project.findById(id);
-        res.status(200).json({
-            status: "success",
-            data: {
-                ...project,
-            },
-        });
+        res.status(200).json(project);
     }
     catch (err) {
         res.status(400).json({

@@ -8,6 +8,7 @@ function generateToken(_id) {
 }
 async function login(req, res) {
     try {
+        //
         const userName = req.body.userName;
         const password = req.body.password;
         if (!userName || !password) {
@@ -28,12 +29,17 @@ async function login(req, res) {
             res.status(200).json({
                 status: "success",
                 token: token,
+                user: {
+                    id: found_user._id,
+                    userName: found_user.userName,
+                    name: found_user.name,
+                },
             });
         }
     }
     catch {
         res.status(400).json({
-            status: "filed",
+            status: "failed",
             message: "connection error",
         });
     }

@@ -5,6 +5,10 @@ import GetTeamById from "../controllers/Team/GET.js";
 import patchTeam from "../controllers/Team/PATCH.js";
 import postTeam from "../controllers/Team/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
+import multer from "multer";
+import UploadImageLeft from "../controllers/Team/cloudinary.js";
+// -----------middlewares----------
+// router.param('id', checkId) // so way better to use this method instead of using chain with every route
 const router = express.Router();
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route

@@ -4,12 +4,17 @@ async function GetAllTeam(req, res) {
     try {
         const team = await Team.find();
         res.status(200).json({
-            status: "sucess",
+            status: "success",
             results: team.length,
-            data: { team },
+            data: team,
         });
     }
-    catch { }
+    catch {
+        res.status(400).json({
+            status: "fail",
+            message: "Failed to fetch teams",
+        });
+    }
 }
 export default GetAllTeam;
 //# sourceMappingURL=GET_ALL.js.map

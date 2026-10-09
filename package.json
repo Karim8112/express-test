@@ -54,6 +54,7 @@
     "cors@2.8.6": true,
     "multer@2.4.0": true,
     "dotenv@18.0.7": true,
-    "cloudinary@2.11.0": true
+    "cloudinary@2.11.0": true,
+    "express@5.3.0": true
   }
 }
