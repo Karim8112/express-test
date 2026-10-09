@@ -8,4 +8,5 @@ const upload = multer({
 
 // Multer middleware to extract the field named "imageLeft"
 // ================================
-export const uploadImageMiddleware = upload.single("imageLeft");
+export const iamgeLeft = upload.single("imageLeft");
+export const imageRight = upload.single("imageRight");

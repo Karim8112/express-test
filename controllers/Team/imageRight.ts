@@ -4,7 +4,7 @@ import { uploadForamts, cloudinary } from "../../cloudinary.js";
 
 // 1\. Configure Multer to store the file in memory buffer
 
-async function UploadImageLeft(
+async function UploadImageRight(
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
@@ -13,7 +13,7 @@ async function UploadImageLeft(
     if (!req.file) {
       res.status(400).json({
         status: "fail",
-        message: 'No image file provided in field "imageLeft"',
+        message: 'No image file provided in field "imageRight"',
       });
       return;
     }
@@ -23,19 +23,19 @@ async function UploadImageLeft(
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     const dataURL = `data:${req.file.mimetype};base64,${b64}`;
 
-    const uploadedImage = await cloudinary.uploader.upload(dataURL, {
+    const uploadedImageRight = await cloudinary.uploader.upload(dataURL, {
       // upload_preset: "unsigned_upload", // Created in Cloudinary settings
       allowed_formats: uploadForamts,
       folder: uploadPath,
-      public_id: "imageLeft",
+      public_id: "imageRight",
       overwrite: true,
       invalidate: true,
     });
 
-    console.log("Cloudinary Upload Success:", uploadedImage);
-    (req as any).uploadImageURL = (
+    console.log("Cloudinary Upload Success:", uploadedImageRight);
+    (req as any).uploadedImageRight = (
       process.env.IMAGED_SAVED_LINK ?? ("" as string)
-    ).concat(uploadedImage.public_id);
+    ).concat(uploadedImageRight.public_id);
     next();
   } catch (err) {
     console.error("Cloudinary Upload Error:", err);
@@ -47,7 +47,7 @@ async function UploadImageLeft(
   }
 
   //   const ext = file.mimetype.split("/")[1];
-  //   cb(null, `imageLeft.${ext}`);
+  //   cb(null, `imageRight.${ext}`);
 }
 
-export default UploadImageLeft;
+export default UploadImageRight;

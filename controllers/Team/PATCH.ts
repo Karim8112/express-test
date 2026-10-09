@@ -4,7 +4,8 @@ import express from "express";
 declare global {
   namespace Express {
     interface Request {
-      uploadImageURL?: string;
+      uploadImageLeft?: string;
+      uploadedImageRight?: string;
     }
   }
 }
@@ -16,8 +17,13 @@ async function patchTeam(
   const { id } = req.params;
   const updatedBody = {
     ...req.body,
-    imageLeft: req.uploadImageURL ? req.uploadImageURL : req.body.imageLeft,
   };
+  if (req.uploadImageLeft) {
+    updatedBody.imageLeft = req.uploadImageLeft;
+  }
+  if (req.uploadedImageRight) {
+    updatedBody.iamgeRight = req.uploadedImageRight;
+  }
 
   try {
     const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
