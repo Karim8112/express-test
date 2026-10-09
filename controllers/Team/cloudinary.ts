@@ -20,8 +20,8 @@ async function UploadImageLeft(
 
     const teamId = req.params.id;
     const uploadPath = "images/team_images/".concat(teamId as string);
-    const b46 = Buffer.from(req.file.buffer).toString("base64");
-    const dataURL = `data:${req.file.mimetype};base46,${b46}`;
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    const dataURL = `data:${req.file.mimetype};base64,${b64}`;
 
     const uploadedImage = await cloudinary.uploader.upload(dataURL, {
       upload_preset: "unsigned_upload", // Created in Cloudinary settings
