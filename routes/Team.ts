@@ -6,6 +6,7 @@ import patchTeam from "../controllers/Team/PATCH.js";
 import postTeam from "../controllers/Team/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
 // import multer from "multer";
+import { uploadImageMiddleware } from "../middlewares/multer.js";
 import UploadImageLeft from "../controllers/Team/cloudinary.js";
 
 // -----------middlewares----------
@@ -19,7 +20,12 @@ router
   .route(`/team/:id`)
   .delete(protectRoute, DeleteTeam /* ,checkId */)
   .get(GetTeamById /* ,checkId */)
-  .patch(protectRoute, UploadImageLeft, patchTeam /* ,checkId */);
+  .patch(
+    protectRoute,
+    uploadImageMiddleware,
+    UploadImageLeft,
+    patchTeam /* ,checkId */,
+  );
 // tours
 router.route(`/team`).get(GetAllTeam).post(protectRoute, postTeam);
 

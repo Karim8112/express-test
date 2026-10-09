@@ -1,25 +1,8 @@
-import { v2 as cloudinary } from "cloudinary";
 import express from "express";
-import multer from "multer";
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME ?? "",
-  api_key: process.env.CLOUDINARY_APIKEY ?? "",
-  api_secret: process.env.CLOUDINARY_APISECRET ?? "",
-});
 
-export const uploadForamts = ["png", "jpg", "jpeg", "webp"];
-export { cloudinary };
+import { uploadForamts, cloudinary } from "../../cloudinary.js";
 
 // 1\. Configure Multer to store the file in memory buffer
-const storage = multer.memoryStorage();
-const upload = multer({
-  storage,
-  limits: { fileSize: 5 * 1024 * 1024 },
-});
-
-// Multer middleware to extract the field named "imageLeft"
-// ================================
-export const uploadImageMiddleware = upload.single("imageLeft");
 
 async function UploadImageLeft(
   req: express.Request,
