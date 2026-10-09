@@ -24,7 +24,7 @@ async function UploadImageLeft(
     const dataURL = `data:${req.file.mimetype};base64,${b64}`;
 
     const uploadedImage = await cloudinary.uploader.upload(dataURL, {
-      upload_preset: "unsigned_upload", // Created in Cloudinary settings
+      // upload_preset: "unsigned_upload", // Created in Cloudinary settings
       allowed_formats: uploadForamts,
       folder: uploadPath,
       public_id: "imageLeft",
@@ -33,7 +33,7 @@ async function UploadImageLeft(
     });
 
     console.log("Cloudinary Upload Success:", uploadedImage);
-    // (req as any).uploadImageURL = dataURL;
+    (req as any).uploadImageURL = uploadedImage.public_id;
     next();
   } catch (err) {
     console.error("Cloudinary Upload Error:", err);
