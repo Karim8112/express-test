@@ -33,7 +33,9 @@ async function UploadImageLeft(
     });
 
     console.log("Cloudinary Upload Success:", uploadedImage);
-    (req as any).uploadImageURL = uploadedImage.public_id;
+    (req as any).uploadImageURL = (
+      process.env.IMAGED_SAVED_LINK ?? ("" as string)
+    ).concat(uploadedImage.public_id);
     next();
   } catch (err) {
     console.error("Cloudinary Upload Error:", err);
