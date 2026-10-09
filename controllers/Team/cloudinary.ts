@@ -8,7 +8,7 @@ cloudinary.config({
 });
 
 export const uploadForamts = ["png", "jpg", "jpeg", "webp"];
-module.exports = cloudinary;
+export { cloudinary };
 // ================================
 
 async function UploadImageLeft(

@@ -7,6 +7,6 @@ dotenv.config({ path: "./config.env" });
 
 MongoConnection();
 
-app.listen(config.port, config.host, () => {
+app.listen(Number(config.port), config.host, () => {
   console.log(`App running on port ${config.port}...`);
 });

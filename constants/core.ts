@@ -1,5 +1,5 @@
 export const config = {
-  port: 8000,
+  port: process.env.PORT || 8000,
   host: "pink-ant-682660.hostingersite.com",
 };
 
