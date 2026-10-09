@@ -19,7 +19,7 @@ router
   .route(`/team/:id`)
   .delete(protectRoute, DeleteTeam /* ,checkId */)
   .get(GetTeamById /* ,checkId */)
-  .patch(protectRoute, patchTeam /* ,checkId */);
+  .patch(protectRoute, UploadImageLeft, patchTeam /* ,checkId */);
 // tours
 router.route(`/team`).get(GetAllTeam).post(protectRoute, postTeam);
 
