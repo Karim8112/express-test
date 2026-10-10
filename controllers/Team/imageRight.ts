@@ -39,6 +39,7 @@ async function UploadImageRight(
     (req as any).uploadImageRight = (
       process.env.IMAGED_SAVED_LINK ?? ("" as string)
     ).concat(uploadedImage.public_id);
+    //
     next();
 
     //

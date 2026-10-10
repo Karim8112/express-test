@@ -5,7 +5,7 @@ declare global {
   namespace Express {
     interface Request {
       uploadImageLeft?: string;
-      uploadedImageRight?: string;
+      uploadImageRight?: string;
     }
   }
 }
@@ -21,8 +21,8 @@ async function patchTeam(
   if (req.uploadImageLeft) {
     updatedBody.imageLeft = req.uploadImageLeft;
   }
-  if (req.uploadedImageRight) {
-    updatedBody.iamgeRight = req.uploadedImageRight;
+  if (req.uploadImageRight) {
+    updatedBody.iamgeRight = req.uploadImageRight;
   }
 
   try {
