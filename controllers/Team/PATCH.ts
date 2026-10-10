@@ -22,7 +22,7 @@ async function patchTeam(
     updatedBody.imageLeft = req.uploadImageLeft;
   }
   if (req.uploadImageRight) {
-    updatedBody.iamgeRight = req.uploadImageRight;
+    updatedBody.imageRight = req.uploadImageRight;
   }
 
   try {
