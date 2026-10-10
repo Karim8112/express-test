@@ -1,12 +1,17 @@
 import multer from "multer";
 
+// Configure memory storage so files are kept as buffers in RAM
 const storage = multer.memoryStorage();
+
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB per file limit
 });
 
-// Multer middleware to extract the field named "imageLeft"
-// ================================
-export const iamgeLeft = upload.single("imageLeft");
-export const imageRight = upload.single("imageRight");
+// Parse both fields in one single pass over the incoming HTTP stream
+export const uploadTeamImages = upload.fields([
+  { name: "imageLeft", maxCount: 1 },
+  { name: "imageRight", maxCount: 1 },
+]);
+
+export default uploadTeamImages;

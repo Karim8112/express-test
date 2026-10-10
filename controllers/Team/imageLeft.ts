@@ -10,18 +10,22 @@ async function UploadImageLeft(
   next: express.NextFunction,
 ) {
   try {
-    if (!req.file) {
-      res.status(400).json({
-        status: "fail",
-        message: 'No image file provided in field "imageLeft"',
-      });
-      return;
+    const files = req.files as
+      | { [fieldname: string]: Express.Multer.File[] }
+      | undefined;
+
+    if (!files || !files.imageLeft || files.imageLeft.length === 0) {
+      return next();
     }
 
+    const file = files.imageLeft[0];
+    if (!file) {
+      return next();
+    }
     const teamId = req.params.id;
     const uploadPath = "images/team_images/".concat(teamId as string);
-    const b64 = Buffer.from(req.file.buffer).toString("base64");
-    const dataURL = `data:${req.file.mimetype};base64,${b64}`;
+    const b64 = Buffer.from(file.buffer).toString("base64");
+    const dataURL = `data:${file.mimetype};base64,${b64}`;
 
     const uploadedImage = await cloudinary.uploader.upload(dataURL, {
       // upload_preset: "unsigned_upload", // Created in Cloudinary settings
@@ -32,11 +36,12 @@ async function UploadImageLeft(
       invalidate: true,
     });
 
-    console.log("Cloudinary Upload Success:", uploadedImage);
     (req as any).uploadImageLeft = (
       process.env.IMAGED_SAVED_LINK ?? ("" as string)
     ).concat(uploadedImage.public_id);
     next();
+
+    //
   } catch (err) {
     console.error("Cloudinary Upload Error:", err);
     res.status(500).json({
@@ -45,9 +50,6 @@ async function UploadImageLeft(
     });
     return;
   }
-
-  //   const ext = file.mimetype.split("/")[1];
-  //   cb(null, `imageLeft.${ext}`);
 }
 
 export default UploadImageLeft;

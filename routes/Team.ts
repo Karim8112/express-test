@@ -6,7 +6,7 @@ import patchTeam from "../controllers/Team/PATCH.js";
 import postTeam from "../controllers/Team/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
 // import multer from "multer";
-import { iamgeLeft, imageRight } from "../middlewares/multer.js";
+import { uploadTeamImages } from "../middlewares/multer.js";
 import UploadImageLeft from "../controllers/Team/imageLeft.js";
 import uploadedImagRight from "../controllers/Team/imageRight.js";
 
@@ -23,8 +23,7 @@ router
   .get(GetTeamById /* ,checkId */)
   .patch(
     protectRoute,
-    imageRight,
-    iamgeLeft,
+    uploadTeamImages,
     UploadImageLeft,
     uploadedImagRight,
     patchTeam /* ,checkId */,
