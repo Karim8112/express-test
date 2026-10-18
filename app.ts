@@ -11,6 +11,7 @@ import AddTimeMiddleware from "./middlewares/addTime.js";
 import TeamRouter from "./routes/Team.js";
 import ProjectRouter from "./routes/Project.js";
 import AuthRouter from "./routes/Auth.js";
+import VideoRouter from "./routes/Video.js";
 
 const app = express();
 app.use(
@@ -37,9 +38,10 @@ app.use("/images/team_images", express.static(teamImagesPath));
 app.use(AddTimeMiddleware);
 // -------- routing middleware -------------
 
+app.use(`/${baseURL}`, AuthRouter);
 app.use(`/${baseURL}`, TeamRouter);
 app.use(`/${baseURL}`, ProjectRouter);
-app.use(`/${baseURL}`, AuthRouter);
+app.use(`/${baseURL}`, VideoRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({
