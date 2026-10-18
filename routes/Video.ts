@@ -11,11 +11,11 @@ const router = express.Router();
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route
 
 router
-  .route(`/project/:id`)
+  .route(`/video/:id`)
   .delete(protectRoute, DeleteVideo /* ,checkId */)
   .get(GetVideoById /* ,checkId */)
   .patch(protectRoute, uploadPhotoController, patchVideo /* ,checkId */);
 // tours
-router.route(`/project`).get(GetAllVideo).post(protectRoute, postVideo);
+router.route(`/video`).get(GetAllVideo).post(protectRoute, postVideo);
 
 export default router;
