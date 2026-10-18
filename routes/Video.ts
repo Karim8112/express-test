@@ -12,10 +12,10 @@ const router = express.Router();
 
 router
   .route(`/video/:id`)
-  .delete(protectRoute, DeleteVideo /* ,checkId */)
+  .delete(DeleteVideo /* ,checkId */)
   .get(GetVideoById /* ,checkId */)
-  .patch(protectRoute, uploadPhotoController, patchVideo /* ,checkId */);
+  .patch(uploadPhotoController, patchVideo /* ,checkId */);
 // tours
-router.route(`/video`).get(GetAllVideo).post(protectRoute, postVideo);
+router.route(`/video`).get(GetAllVideo).post(postVideo);
 
 export default router;
