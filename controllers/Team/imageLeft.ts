@@ -1,6 +1,7 @@
 import express from "express";
 
 import { uploadForamts, cloudinary } from "../../cloudinary.js";
+import { timeStamp } from "console";
 
 // 1\. Configure Multer to store the file in memory buffer
 
@@ -22,8 +23,8 @@ async function UploadImageLeft(
     if (!file) {
       return next();
     }
-    const teamId = req.params.id;
-    const uploadPath = "images/team_images/".concat(teamId as string);
+    // const teamId = req.params.id;
+    const uploadPath = "images/team_images";
     const b64 = Buffer.from(file.buffer).toString("base64");
     const dataURL = `data:${file.mimetype};base64,${b64}`;
 
@@ -31,7 +32,7 @@ async function UploadImageLeft(
       // upload_preset: "unsigned_upload", // Created in Cloudinary settings
       allowed_formats: uploadForamts,
       folder: uploadPath,
-      public_id: "imageLeft",
+      public_id: `iamgeLeft-${timeStamp}`,
       overwrite: true,
       invalidate: true,
     });
