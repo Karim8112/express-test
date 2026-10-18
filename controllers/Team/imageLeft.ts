@@ -32,7 +32,7 @@ async function UploadImageLeft(
       // upload_preset: "unsigned_upload", // Created in Cloudinary settings
       allowed_formats: uploadForamts,
       folder: uploadPath,
-      public_id: `iamgeLeft-${timeStamp}`,
+      public_id: `iamgeLeft-${Date.now()}`,
       overwrite: true,
       invalidate: true,
     });
