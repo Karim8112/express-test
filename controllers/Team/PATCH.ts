@@ -1,6 +1,7 @@
 import { Team } from "../../models/Team.js";
 import express from "express";
 import fs from "fs";
+import path from "path";
 import { baseURL, config } from "../../constants/core.js";
 // declare global {
 //   namespace Express {
@@ -15,58 +16,37 @@ async function patchTeam(
   req: express.Request<{ id: string }>,
   res: express.Response,
 ) {
-  // const updatedBody = {
-  //   ...req.body,
-  // };
-  // if (req.uploadImageLeft) {
-  //   updatedBody.imageLeft = req.uploadImageLeft;
-  // }
-  // if (req.uploadImageRight) {
-  //   updatedBody.imageRight = req.uploadImageRight;
-  // }
-  const { id } = req.params;
-  let imageLeft, imageLeftName, imageLeftPath, imageLeftType;
-  let imageRight, imageRightName, imageRightPath, imageRightType;
-  //
-  //
-  const files = req.files as
-    | { [fieldname: string]: Express.Multer.File[] }
-    | undefined;
-
-  //
-  //
-  // fetching the leftImage from the request
-  if (files?.imageLeft && files.imageLeft.length > 0) {
-    imageLeft = files.imageLeft[0];
-    imageLeftType = imageLeft?.mimetype.split("/")[1];
-    imageLeftName = `imageLeft${Date.now()}.${imageLeftType as string}`;
-    imageLeftPath = `static/${imageLeftName}`;
-  }
-  // fetching the rightImage from the request
-  if (files?.imageRight && files.imageRight.length > 0) {
-    imageRight = files.imageRight[0];
-    imageRightType = imageRight?.mimetype;
-    imageRightName = `imageRight${Date.now()}.${imageRightType as string}`;
-    imageRightPath = `static/${imageRightName}`;
-  }
-
   try {
+    const { id } = req.params;
+    let imageLeftName, imageLeftPath, imageLeftType;
+    let imageRightName, imageRightPath, imageRightType;
+
+    const files = req.files as
+      | { [fieldname: string]: Express.Multer.File[] }
+      | undefined;
+
     const updatedBody = {
       ...req.body,
     };
-
-    if (imageLeft) {
-      fs.writeFileSync(imageLeftPath as string, imageLeft.buffer);
+    const leftImageFile = files?.imageLeft?.[0];
+    if (leftImageFile) {
+      imageLeftType = path.extname(leftImageFile.originalname).toLowerCase();
+      imageLeftName = `imageLeft${Date.now()}${imageLeftType as string}`;
+      imageLeftPath = `static/${imageLeftName}`;
+      fs.writeFileSync(imageLeftPath as string, leftImageFile.buffer);
       updatedBody["imageLeft"] = `${config.host}/${imageLeftName as string}`;
     }
 
-    if (imageRight) {
-      fs.writeFileSync(imageRightPath as string, imageRight.buffer);
+    const rightImageFile = files?.imageRight?.[0];
+    if (rightImageFile) {
+      imageRightType = path.extname(rightImageFile.originalname).toLowerCase();
+      imageRightName = `imageRight${Date.now()}${imageRightType as string}`;
+      imageRightPath = `static/${imageRightName}`;
+      fs.writeFileSync(imageRightPath as string, rightImageFile.buffer);
       updatedBody["imageRight"] = `${config.host}/${imageRightName as string}`;
     }
 
     try {
-      console.log("inside 2");
       const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
         new: true,
         runValidators: true,
