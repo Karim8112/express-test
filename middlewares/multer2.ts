@@ -90,6 +90,7 @@ export const createCompressMiddleware = (
             fit: "inside",
             withoutEnlargement: true,
           })
+          .sharpen()
           .webp({
             quality,
             effort,

@@ -30,6 +30,14 @@ router
     patchTeam /* ,checkId */,
   );
 // tours
-router.route(`/team`).get(GetAllTeam).post(protectRoute, postTeam);
+router
+  .route(`/team`)
+  .get(GetAllTeam)
+  .post(
+    protectRoute,
+    createUploadMiddleware(teamImageFields),
+    createCompressMiddleware(teamImageFields),
+    postTeam,
+  );
 
 export default router;
