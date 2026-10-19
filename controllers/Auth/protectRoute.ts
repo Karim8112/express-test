@@ -32,7 +32,6 @@ export const protectRoute: RequestHandler = async (
         });
         return;
       }
-      console.log(decoded.id);
 
       // verify if user exists (from its _id)
       const found_user = await User.findOne({ _id: new ObjectId(decoded.id) });

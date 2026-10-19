@@ -21,13 +21,7 @@ router
   .route(`/team/:id`)
   .delete(protectRoute, DeleteTeam /* ,checkId */)
   .get(GetTeamById /* ,checkId */)
-  .patch(
-    protectRoute,
-    uploadTeamImages,
-    UploadImageLeft,
-    uploadedImagRight,
-    patchTeam /* ,checkId */,
-  );
+  .patch(protectRoute, uploadTeamImages, patchTeam /* ,checkId */);
 // tours
 router.route(`/team`).get(GetAllTeam).post(protectRoute, postTeam);
 

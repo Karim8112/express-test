@@ -40,14 +40,14 @@ async function patchTeam(
     imageLeft = files.imageLeft[0];
     imageLeftType = imageLeft?.mimetype.split("/")[1];
     imageLeftName = `imageLeft${Date.now()}.${imageLeftType as string}`;
-    imageLeftPath = `../../static/${imageLeftName}`;
+    imageLeftPath = `static/${imageLeftName}`;
   }
   // fetching the rightImage from the request
   if (files?.imageRight && files.imageRight.length > 0) {
     imageRight = files.imageRight[0];
     imageRightType = imageRight?.mimetype;
     imageRightName = `imageRight${Date.now()}.${imageRightType as string}`;
-    imageRightPath = `/static/${imageRightName}`;
+    imageRightPath = `static/${imageRightName}`;
   }
 
   try {
@@ -57,19 +57,16 @@ async function patchTeam(
 
     if (imageLeft) {
       fs.writeFileSync(imageLeftPath as string, imageLeft.buffer);
-      updatedBody["imageLeft"] = config.host
-        .concat(baseURL)
-        .concat(imageLeftName as string);
+      updatedBody["imageLeft"] = `${config.host}/${imageLeftName as string}`;
     }
 
     if (imageRight) {
       fs.writeFileSync(imageRightPath as string, imageRight.buffer);
-      updatedBody["imageRight"] = config.host
-        .concat(baseURL)
-        .concat(imageRightName as string);
+      updatedBody["imageRight"] = `${config.host}/${imageRightName as string}`;
     }
 
     try {
+      console.log("inside 2");
       const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
         new: true,
         runValidators: true,

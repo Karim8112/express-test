@@ -35,9 +35,6 @@ async function login(
         message: "user name or password is invalid",
       });
     } else {
-      console.log("username", userName);
-      console.log("username", process.env.JWT_SECRET);
-      console.log("username", process.env.JWT_EXPIRES_IN);
       const token = generateToken(found_user.id as string);
       res.status(200).json({
         status: "success",
