@@ -3,14 +3,6 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { baseURL, config } from "../../constants/core.js";
-// declare global {
-//   namespace Express {
-//     interface Request {
-//       uploadImageLeft?: string;
-//       uploadImageRight?: string;
-//     }
-//   }
-// }
 
 async function patchTeam(
   req: express.Request<{ id: string }>,
