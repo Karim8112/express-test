@@ -47,7 +47,7 @@ async function patchTeam(
     imageRight = files.imageRight[0];
     imageRightType = imageRight?.mimetype;
     imageRightName = `imageRight${Date.now()}.${imageRightType as string}`;
-    imageRightPath = __dirname.concat(`/../../static/${imageRightName}`);
+    imageRightPath = `/../../static/${imageRightName}`;
   }
 
   try {
