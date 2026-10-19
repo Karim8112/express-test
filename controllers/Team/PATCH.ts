@@ -34,7 +34,8 @@ async function patchTeam(
       imageLeftName = `imageLeft${Date.now()}${imageLeftType as string}`;
       imageLeftPath = `static/${imageLeftName}`;
       fs.writeFileSync(imageLeftPath as string, leftImageFile.buffer);
-      updatedBody["imageLeft"] = `${config.host}/${imageLeftName as string}`;
+      updatedBody["imageLeft"] =
+        `https://${config.host}/${imageLeftName as string}`;
     }
 
     const rightImageFile = files?.imageRight?.[0];
