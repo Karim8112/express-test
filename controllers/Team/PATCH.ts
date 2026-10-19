@@ -40,7 +40,7 @@ async function patchTeam(
     imageLeft = files.imageLeft[0];
     imageLeftType = imageLeft?.mimetype;
     imageLeftName = `imageLeft${Date.now()}.${imageLeftType as string}`;
-    imageLeftPath = __dirname.concat(`/../../static/${imageLeftName}`);
+    imageLeftPath = `/../../static/${imageLeftName}`;
   }
   // fetching the rightImage from the request
   if (files?.imageRight && files.imageRight.length > 0) {
