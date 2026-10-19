@@ -41,6 +41,10 @@ async function patchTeam(
     imageLeftType = imageLeft?.mimetype.split("/")[1];
     imageLeftName = `imageLeft${Date.now()}.${imageLeftType as string}`;
     imageLeftPath = `/static/${imageLeftName}`;
+
+    console.log("this is the type: ", imageLeftType);
+    console.log("this is the Name: ", imageLeftName);
+    console.log("this is the path: ", imageLeftPath);
   }
   // fetching the rightImage from the request
   if (files?.imageRight && files.imageRight.length > 0) {
