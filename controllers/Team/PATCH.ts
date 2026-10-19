@@ -36,7 +36,8 @@ async function patchTeam(
       imageRightName = `imageRight${Date.now()}${imageRightType as string}`;
       imageRightPath = `static/${imageRightName}`;
       fs.writeFileSync(imageRightPath as string, rightImageFile.buffer);
-      updatedBody["imageRight"] = `${config.host}/${imageRightName as string}`;
+      updatedBody["imageRight"] =
+        `https://${config.host}/${imageRightName as string}`;
     }
 
     try {
