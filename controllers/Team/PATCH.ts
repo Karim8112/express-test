@@ -38,16 +38,16 @@ async function patchTeam(
   // fetching the leftImage from the request
   if (files?.imageLeft && files.imageLeft.length > 0) {
     imageLeft = files.imageLeft[0];
-    imageLeftType = imageLeft?.mimetype;
+    imageLeftType = imageLeft?.mimetype.split("/")[1];
     imageLeftName = `imageLeft${Date.now()}.${imageLeftType as string}`;
-    imageLeftPath = `/../../static/${imageLeftName}`;
+    imageLeftPath = `/static/${imageLeftName}`;
   }
   // fetching the rightImage from the request
   if (files?.imageRight && files.imageRight.length > 0) {
     imageRight = files.imageRight[0];
     imageRightType = imageRight?.mimetype;
     imageRightName = `imageRight${Date.now()}.${imageRightType as string}`;
-    imageRightPath = `/../../static/${imageRightName}`;
+    imageRightPath = `/static/${imageRightName}`;
   }
 
   try {
