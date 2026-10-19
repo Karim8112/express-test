@@ -5,7 +5,7 @@ import GetVideoById from "../controllers/Video/GET.js";
 import patchVideo from "../controllers/Video/PATCH.js";
 import postVideo from "../controllers/Video/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
-import uploadPhotoController from "../controllers/Team/uploadPhoto.js";
+
 const router = express.Router();
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route
@@ -14,7 +14,7 @@ router
   .route(`/video/:id`)
   .delete(protectRoute, DeleteVideo /* ,checkId */)
   .get(GetVideoById /* ,checkId */)
-  .patch(protectRoute, uploadPhotoController, patchVideo /* ,checkId */);
+  .patch(protectRoute, patchVideo /* ,checkId */);
 // tours
 router.route(`/video`).get(GetAllVideo).post(protectRoute, postVideo);
 
