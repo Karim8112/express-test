@@ -12,7 +12,7 @@ import TeamRouter from "./routes/Team.js";
 import ProjectRouter from "./routes/Project.js";
 import AuthRouter from "./routes/Auth.js";
 import VideoRouter from "./routes/Video.js";
-
+// test
 const app = express();
 app.use(
   cors({
