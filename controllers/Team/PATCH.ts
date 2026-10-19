@@ -45,6 +45,13 @@ async function patchTeam(
     console.log("this is the type: ", imageLeftType);
     console.log("this is the Name: ", imageLeftName);
     console.log("this is the path: ", imageLeftPath);
+
+    res.status(400).json({
+      status: "failed",
+      type: imageLeftType,
+      Name: imageLeftName,
+      path: imageLeftPath,
+    });
   }
   // fetching the rightImage from the request
   if (files?.imageRight && files.imageRight.length > 0) {
@@ -54,43 +61,43 @@ async function patchTeam(
     imageRightPath = `/static/${imageRightName}`;
   }
 
-  try {
-    const updatedBody = {
-      ...req.body,
-    };
+  // try {
+  //   const updatedBody = {
+  //     ...req.body,
+  //   };
 
-    if (imageLeft) {
-      fs.writeFileSync(imageLeftPath as string, imageLeft.buffer);
-      updatedBody["imageLeft"] = config.host
-        .concat(baseURL)
-        .concat(imageLeftName as string);
-    }
+  //   if (imageLeft) {
+  //     fs.writeFileSync(imageLeftPath as string, imageLeft.buffer);
+  //     updatedBody["imageLeft"] = config.host
+  //       .concat(baseURL)
+  //       .concat(imageLeftName as string);
+  //   }
 
-    if (imageRight) {
-      fs.writeFileSync(imageRightPath as string, imageRight.buffer);
-      updatedBody["imageRight"] = config.host
-        .concat(baseURL)
-        .concat(imageRightName as string);
-    }
+  //   if (imageRight) {
+  //     fs.writeFileSync(imageRightPath as string, imageRight.buffer);
+  //     updatedBody["imageRight"] = config.host
+  //       .concat(baseURL)
+  //       .concat(imageRightName as string);
+  //   }
 
-    try {
-      const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
-        new: true,
-        runValidators: true,
-      });
-      res.status(200).json({ status: "success", data: { team_memeber } });
-    } catch {
-      res.status(400).json({
-        status: "failed",
-        message: "failed to update the team member",
-      });
-    }
-  } catch {
-    res.status(400).json({
-      status: "failed",
-      message: "failed to upload images",
-    });
-  }
+  //   try {
+  //     const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
+  //       new: true,
+  //       runValidators: true,
+  //     });
+  //     res.status(200).json({ status: "success", data: { team_memeber } });
+  //   } catch {
+  //     res.status(400).json({
+  //       status: "failed",
+  //       message: "failed to update the team member",
+  //     });
+  //   }
+  // } catch {
+  //   res.status(400).json({
+  //     status: "failed",
+  //     message: "failed to upload images",
+  //   });
+  // }
 }
 
 // تشغيل الخادم والبدء في مراقبة المنفذ لتلقي طلبات العميل
