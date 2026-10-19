@@ -6,7 +6,10 @@ import patchTeam from "../controllers/Team/PATCH.js";
 import postTeam from "../controllers/Team/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
 // import multer from "multer";
-import { uploadTeamImages, compressTeamImages } from "../middlewares/multer.js";
+import {
+  createCompressMiddleware,
+  createUploadMiddleware,
+} from "../middlewares/multer2.js";
 
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route
@@ -14,6 +17,7 @@ import { uploadTeamImages, compressTeamImages } from "../middlewares/multer.js";
 const router = express.Router();
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route
+const teamImageFields = ["imageLeft", "imageRight"];
 
 router
   .route(`/team/:id`)
@@ -21,8 +25,8 @@ router
   .get(GetTeamById /* ,checkId */)
   .patch(
     protectRoute,
-    uploadTeamImages,
-    compressTeamImages,
+    createUploadMiddleware(teamImageFields),
+    createCompressMiddleware(teamImageFields),
     patchTeam /* ,checkId */,
   );
 // tours

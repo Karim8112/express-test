@@ -1,6 +1,6 @@
 export const config = {
   port: process.env.PORT || 8000,
-  host: "pink-ant-682660.hostingersite.com",
+  host: "localhost",
 };
 
 export const baseURL = "api/v1";
