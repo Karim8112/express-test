@@ -25,6 +25,10 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: [true, "please add the project type"],
   },
+  iamges: {
+    type: [String],
+    required: false,
+  },
 });
 
 export const Project = mongoose.model("Project", ProjectSchema);
