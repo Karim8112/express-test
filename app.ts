@@ -12,6 +12,7 @@ import TeamRouter from "./routes/Team.js";
 import ProjectRouter from "./routes/Project.js";
 import AuthRouter from "./routes/Auth.js";
 import VideoRouter from "./routes/Video.js";
+import TestRouter from "./routes/test.js";
 const app = express();
 app.use(
   cors({
@@ -41,6 +42,7 @@ app.use(`/${baseURL}`, AuthRouter);
 app.use(`/${baseURL}`, TeamRouter);
 app.use(`/${baseURL}`, ProjectRouter);
 app.use(`/${baseURL}`, VideoRouter);
+app.use(`/${baseURL}`, TestRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({
