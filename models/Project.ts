@@ -25,7 +25,7 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: [true, "please add the project type"],
   },
-  iamges: {
+  images: {
     type: [String],
     required: false,
   },
