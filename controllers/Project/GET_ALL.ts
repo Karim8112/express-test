@@ -3,6 +3,7 @@ import { Project } from "../../models/Project.js";
 
 async function GetAllProject(req: express.Request, res: express.Response) {
   try {
+    console.log("this is the request query: ", req.query);
     const projects = await Project.find();
     res.status(200).json({
       status: "sucess",

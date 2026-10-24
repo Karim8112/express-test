@@ -8,15 +8,30 @@ const PostProject: RequestHandler = async (
   res: express.Response,
 ) => {
   try {
-    const updatedProject = req.body;
-    const files = req.files as Express.Multer.File[] | undefined;
-    const newUploadedUrls: string[] = [];
-    const Images = files?.length
-      ? files.filter((file: Express.Multer.File) => file.fieldname == "images")
-      : [];
-    // console.log("those are the images:", Images);
-    // Save each compressed buffer to disk and construct public URLs
-    if (Images?.length > 0) {
+    const updatedBody = req.body;
+    const files = req.files as
+      | { [fieldname: string]: Express.Multer.File[] }
+      | undefined;
+
+    //adding main project image
+    let uploadedMainImageURL: string = "";
+    const mainImage = files?.mainImage?.[0];
+
+    if (mainImage) {
+      const imageType = path.extname(mainImage.originalname).toLowerCase();
+      const imageName = `ProjectMainImage${Date.now()}${imageType}`;
+      const imagePath = `static/${imageName}`;
+      fs.writeFileSync(imagePath, mainImage.buffer);
+      uploadedMainImageURL = `https://${config.host}/${imageName}`;
+    }
+
+    // ----------------------------------
+    // adding images
+
+    const Images = files?.images;
+    const uploadedImagesURL: string[] = [];
+
+    if (Images) {
       Images.forEach((file, index) => {
         const imageType =
           path.extname(file.originalname).toLowerCase() || "webp";
@@ -29,12 +44,14 @@ const PostProject: RequestHandler = async (
 
         // Build fully-qualified accessible URL
         const imageUrl = `https://${config.host}/${imageName}`;
-        newUploadedUrls.push(imageUrl);
+        uploadedImagesURL.push(imageUrl);
       });
     }
 
-    updatedProject["images"] = newUploadedUrls;
-    const success = await Project.create(req.body);
+    updatedBody["images"] = uploadedImagesURL;
+    updatedBody["mainImage"] = uploadedMainImageURL;
+
+    const success = await Project.create(updatedBody);
     if (success) {
       res.status(201).json({
         status: "success",

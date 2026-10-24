@@ -10,52 +10,57 @@ async function patchTeam(
 ) {
   try {
     const { id } = req.params;
-    let imageLeftName, imageLeftPath, imageLeftType;
-    let imageRightName, imageRightPath, imageRightType;
+    const team_member = await Team.findById(id);
+    if (!team_member) {
+      res
+        .status(404)
+        .json({ status: "failed", message: "team member not found" });
+      return;
+    }
+
+    let leftImageUrl = team_member.imageLeft;
+    let rightImageUrl = team_member.imageRight;
+
+    const updatedBody = req.body;
 
     const files = req.files as
       | { [fieldname: string]: Express.Multer.File[] }
       | undefined;
 
-    const updatedBody = {
-      ...req.body,
-    };
     const leftImageFile = files?.imageLeft?.[0];
     if (leftImageFile) {
-      imageLeftType = path.extname(leftImageFile.originalname).toLowerCase();
-      imageLeftName = `imageLeft${Date.now()}${imageLeftType as string}`;
-      imageLeftPath = `static/${imageLeftName}`;
-      fs.writeFileSync(imageLeftPath as string, leftImageFile.buffer);
-      updatedBody["imageLeft"] =
-        `https://${config.host}/${imageLeftName as string}`;
+      const imageLeftType = path
+        .extname(leftImageFile.originalname)
+        .toLowerCase();
+      const imageLeftName = `imageLeft${Date.now()}${imageLeftType}`;
+      const imageLeftPath = `static/${imageLeftName}`;
+      fs.writeFileSync(imageLeftPath, leftImageFile.buffer);
+      leftImageUrl = `https://${config.host}/${imageLeftName}`;
     }
 
     const rightImageFile = files?.imageRight?.[0];
     if (rightImageFile) {
-      imageRightType = path.extname(rightImageFile.originalname).toLowerCase();
-      imageRightName = `imageRight${Date.now()}${imageRightType as string}`;
-      imageRightPath = `static/${imageRightName}`;
-      fs.writeFileSync(imageRightPath as string, rightImageFile.buffer);
-      updatedBody["imageRight"] =
-        `https://${config.host}/${imageRightName as string}`;
+      const imageRightType = path
+        .extname(rightImageFile.originalname)
+        .toLowerCase();
+      const imageRightName = `imageRight${Date.now()}${imageRightType}`;
+      const imageRightPath = `static/${imageRightName}`;
+      fs.writeFileSync(imageRightPath, rightImageFile.buffer);
+      rightImageUrl = `https://${config.host}/${imageRightName}`;
     }
 
-    try {
-      const team_memeber = await Team.findByIdAndUpdate(id, updatedBody, {
-        new: true,
-        runValidators: true,
-      });
-      res.status(200).json({ status: "success", data: { team_memeber } });
-    } catch {
-      res.status(400).json({
-        status: "failed",
-        message: "failed to update the team member",
-      });
-    }
+    updatedBody["iamgeLeft"] = leftImageUrl;
+    updatedBody["imageRight"] = rightImageUrl;
+
+    const teamMemberData = await Team.findByIdAndUpdate(id, updatedBody, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({ status: "success", data: { teamMemberData } });
   } catch {
     res.status(400).json({
       status: "failed",
-      message: "failed to upload images",
+      message: "failed to update team member",
     });
   }
 }

@@ -6,9 +6,15 @@ import patchProject from "../controllers/Project/PATCH.js";
 import postProject from "../controllers/Project/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
 import {
-  compressImageArrayMiddleware,
-  uploadImageArrayMiddleware,
-} from "../middlewares/multerArray.js";
+  CompressImages,
+  type FieldConfig,
+  UploadImages,
+} from "../middlewares/multerSharp.js";
+
+const projectFields: FieldConfig[] = [
+  { name: "mainImage" },
+  { name: "images", maxCount: 10 },
+];
 
 const router = express.Router();
 // -----------middlewares----------
@@ -25,12 +31,8 @@ router
   .get(GetAllProject)
   .post(
     protectRoute,
-    uploadImageArrayMiddleware("images", 10), // Accepts up to 10 files under 'images'
-    compressImageArrayMiddleware({
-      maxWidth: 1000,
-      maxHeight: 1200,
-      quality: 80,
-    }),
+    UploadImages(projectFields),
+    CompressImages(projectFields),
     postProject,
   );
 

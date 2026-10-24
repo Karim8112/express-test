@@ -9,35 +9,32 @@ const PostTeam: RequestHandler = async (
   res: express.Response,
 ) => {
   try {
-    let imageLeftName, imageLeftPath, imageLeftType;
-    let imageRightName, imageRightPath, imageRightType;
+    const updatedBody = req.body;
 
     const files = req.files as
       | { [fieldname: string]: Express.Multer.File[] }
       | undefined;
 
-    const updatedBody = {
-      ...req.body,
-    };
-
     const leftImageFile = files?.imageLeft?.[0];
     if (leftImageFile) {
-      imageLeftType = path.extname(leftImageFile.originalname).toLowerCase();
-      imageLeftName = `imageLeft${Date.now()}${imageLeftType as string}`;
-      imageLeftPath = `static/${imageLeftName}`;
-      fs.writeFileSync(imageLeftPath as string, leftImageFile.buffer);
-      updatedBody["imageLeft"] =
-        `https://${config.host}/${imageLeftName as string}`;
+      const imageLeftType = path
+        .extname(leftImageFile.originalname)
+        .toLowerCase();
+      const imageLeftName = `imageLeft${Date.now()}${imageLeftType}`;
+      const imageLeftPath = `static/${imageLeftName}`;
+      fs.writeFileSync(imageLeftPath, leftImageFile.buffer);
+      updatedBody["imageLeft"] = `https://${config.host}/${imageLeftName}`;
     }
 
     const rightImageFile = files?.imageRight?.[0];
     if (rightImageFile) {
-      imageRightType = path.extname(rightImageFile.originalname).toLowerCase();
-      imageRightName = `imageRight${Date.now()}${imageRightType as string}`;
-      imageRightPath = `static/${imageRightName}`;
-      fs.writeFileSync(imageRightPath as string, rightImageFile.buffer);
-      updatedBody["imageRight"] =
-        `https://${config.host}/${imageRightName as string}`;
+      const imageRightType = path
+        .extname(rightImageFile.originalname)
+        .toLowerCase();
+      const imageRightName = `imageRight${Date.now()}${imageRightType}`;
+      const imageRightPath = `static/${imageRightName}`;
+      fs.writeFileSync(imageRightPath, rightImageFile.buffer);
+      updatedBody["imageRight"] = `https://${config.host}/${imageRightName}`;
     }
 
     const success = await Team.create(updatedBody);

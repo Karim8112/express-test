@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
+  mainImage: {
+    type: String,
+    required: [true, "please add the project image"],
+  },
   name: {
     type: String,
     required: [true, "please add the project name"],
