@@ -1,7 +1,6 @@
 import express from "express";
 import { baseURL } from "./constants/core.js";
 import cors from "cors";
-import path from "path";
 // middlewares
 
 // routes
@@ -26,11 +25,6 @@ app.use(express.json());
 app.use(express.json({ limit: `50mb` }));
 app.use(express.urlencoded({ extended: true, limit: `50mb` }));
 app.use(express.static("static"));
-const teamImagesPath = path.join(
-  process.cwd(),
-  "../public_html/images/team_images",
-);
-app.use("/images/team_images", express.static(teamImagesPath));
 
 // custom middlewares
 
