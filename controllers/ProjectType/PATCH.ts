@@ -1,7 +1,7 @@
 import { ProjectType } from "../../models/ProjectType.js";
 import express from "express";
 
-const PostProjectType = async function (
+const PatchProjectType = async function (
   req: express.Request,
   res: express.Response,
 ) {
@@ -30,4 +30,4 @@ const PostProjectType = async function (
   }
 };
 
-export default PostProjectType;
+export default PatchProjectType;

@@ -1,7 +1,7 @@
 import express from "express";
 import { ProjectType } from "../../models/ProjectType.js";
 
-async function GetAllTeam(req: express.Request, res: express.Response) {
+async function GetAllProjectType(req: express.Request, res: express.Response) {
   try {
     const projectTypes = await ProjectType.find();
     res.status(200).json({
@@ -17,4 +17,4 @@ async function GetAllTeam(req: express.Request, res: express.Response) {
   }
 }
 
-export default GetAllTeam;
+export default GetAllProjectType;
