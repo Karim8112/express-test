@@ -1,4 +1,5 @@
 import { ProjectType } from "../../models/ProjectType.js";
+import { Project } from "../../models/Project.js";
 import express from "express";
 
 const DeleteProjectType = async function (
@@ -15,11 +16,22 @@ const DeleteProjectType = async function (
       return;
     }
 
-    const projectType = await ProjectType.findByIdAndDelete(id, req.body);
-    if (projectType) {
+    const projectsFound = await Project.find({ projectType: id });
+
+    if (projectsFound.length > 0) {
+      res.status(400).json({
+        status: "failed",
+        message: "Project type has projects and can't be deleted",
+      });
+      return;
+    }
+
+    const projectTypeDeleted = await ProjectType.findByIdAndDelete(id);
+
+    if (projectTypeDeleted) {
       res.status(200).json({
         status: "success",
-        data: { ProjectType: projectType },
+        data: { ProjectType: projectTypeDeleted },
       });
     }
   } catch {

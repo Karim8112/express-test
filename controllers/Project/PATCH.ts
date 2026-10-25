@@ -3,6 +3,7 @@ import fs from "fs";
 import { config } from "../../constants/core.js";
 import { Project } from "../../models/Project.js";
 import express from "express";
+import { ProjectType } from "../../models/ProjectType.js";
 
 async function patchProject(
   req: express.Request<{ id: string }>,
@@ -11,6 +12,16 @@ async function patchProject(
   const { id } = req.params;
 
   try {
+    const typeExists = ProjectType.exists({ _id: req.body.ProjectType });
+    if (!typeExists) {
+      res.status(404).json({
+        status: "failed",
+        message: "Project Type not exist",
+      });
+      return;
+    }
+
+    // updating project
     const project = await Project.findById(id);
     if (!project) {
       res.status(404).json({ status: "failed", message: "Project not found" });

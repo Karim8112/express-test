@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ProjectSchema = new mongoose.Schema({
   mainImage: {
     type: String,
-    required: [true, "please add the project image"],
+    required: [true, "please add the project main image"],
   },
   name: {
     type: String,
@@ -25,13 +25,14 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  projectType: {
-    type: String,
-    required: [true, "please add the project type"],
-  },
   images: {
     type: [String],
     required: false,
+  },
+  projectType: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ProjectType",
+    required: [true, "please add the project type"],
   },
 });
 

@@ -3,11 +3,22 @@ import { Project } from "../../models/Project.js";
 import path from "path";
 import fs from "fs";
 import { config } from "../../constants/core.js";
+import { ProjectType } from "../../models/ProjectType.js";
 const PostProject: RequestHandler = async (
   req: express.Request,
   res: express.Response,
 ) => {
   try {
+    const typeExists = ProjectType.exists({ _id: req.body.ProjectType });
+
+    if (!typeExists) {
+      res.status(404).json({
+        status: "failed",
+        message: "Project Type not exist",
+      });
+      return;
+    }
+
     const updatedBody = req.body;
     const files = req.files as
       | { [fieldname: string]: Express.Multer.File[] }
