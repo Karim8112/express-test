@@ -11,12 +11,12 @@ const router = express.Router();
 // -----------middlewares----------
 
 router
-  .route(`/team/:id`)
+  .route(`/project_type/:id`)
   .delete(protectRoute, DeleteProjectType /* ,checkId */)
   .patch(protectRoute, patchProjectType /* ,checkId */);
 // tours
 router
-  .route(`/team`)
+  .route(`/project_type`)
   .get(GetAllProjectType)
   .post(protectRoute, postProjectType);
 
