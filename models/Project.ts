@@ -9,9 +9,13 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: [true, "please add the project name"],
   },
+  quickOverview: {
+    type: String,
+    required: [true, "please add the project overview"],
+  },
   summary: {
     type: String,
-    required: [true, "please add the project summary"],
+    required: false,
   },
   organization: {
     type: String,
