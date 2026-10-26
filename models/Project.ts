@@ -11,7 +11,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   summary: {
     type: String,
-    required: [true, "please add the project name"],
+    required: [true, "please add the project summary"],
   },
   organization: {
     type: String,
