@@ -14,10 +14,10 @@ async function GetAllProject(req: express.Request, res: express.Response) {
     const page = Number(req.query.page) || 1;
     const limit = 10;
     const skip = (page - 1) * limit;
-
+    let totalProjects = 0;
     // check page
     if (req.query.page) {
-      const totalProjects = await Project.countDocuments(filter);
+      totalProjects = await Project.countDocuments(filter);
 
       if (totalProjects <= skip) {
         res.status(404).json({
@@ -40,6 +40,7 @@ async function GetAllProject(req: express.Request, res: express.Response) {
     res.status(200).json({
       status: "sucess",
       results: projects.length,
+      total: totalProjects,
       data: projects,
     });
   } catch {
