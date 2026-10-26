@@ -37,13 +37,13 @@ const PostProject: RequestHandler = async (
     }
 
     // ----------------------------------
-    // adding images
+    // adding images Before
 
-    const Images = files?.images;
-    const uploadedImagesURL: string[] = [];
+    const ImagesBefore = files?.imagesBefore;
+    const uploadedImagesBeforeURL: string[] = [];
 
-    if (Images) {
-      Images.forEach((file, index) => {
+    if (ImagesBefore) {
+      ImagesBefore.forEach((file, index) => {
         const imageType =
           path.extname(file.originalname).toLowerCase() || "webp";
         const imageName = `project-${Date.now()}-${index}${imageType}`;
@@ -55,11 +55,34 @@ const PostProject: RequestHandler = async (
 
         // Build fully-qualified accessible URL
         const imageUrl = `https://${config.host}/${imageName}`;
-        uploadedImagesURL.push(imageUrl);
+        uploadedImagesBeforeURL.push(imageUrl);
       });
     }
 
-    updatedBody["images"] = uploadedImagesURL;
+    // adding images After
+    const ImagesAfter = files?.imagesAfter;
+    const uploadedImagesAfterURL: string[] = [];
+
+    if (ImagesAfter) {
+      ImagesAfter.forEach((file, index) => {
+        const imageType =
+          path.extname(file.originalname).toLowerCase() || "webp";
+        const imageName = `project-${Date.now()}-${index}${imageType}`;
+
+        let imagePath = `static/${imageName}`;
+
+        // Write buffer to static folder
+        fs.writeFileSync(imagePath, file.buffer);
+
+        // Build fully-qualified accessible URL
+        const imageUrl = `https://${config.host}/${imageName}`;
+        uploadedImagesAfterURL.push(imageUrl);
+      });
+    }
+
+    // pushing new URLs to updatedBody
+    updatedBody["imagesBefore"] = uploadedImagesBeforeURL;
+    updatedBody["imagesAfter"] = uploadedImagesAfterURL;
     updatedBody["mainImage"] = uploadedMainImageURL;
 
     const success = await Project.create(updatedBody);

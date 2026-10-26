@@ -13,7 +13,8 @@ import {
 
 const projectFields: FieldConfig[] = [
   { name: "mainImage" },
-  { name: "images", maxCount: 10 },
+  { name: "imagesBefore", maxCount: 10 },
+  { name: "imagesAfter", maxCount: 10 },
 ];
 
 const router = express.Router();

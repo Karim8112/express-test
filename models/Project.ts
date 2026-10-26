@@ -9,23 +9,19 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: [true, "please add the project name"],
   },
-  donor: {
+  summary: {
+    type: String,
+    required: [true, "please add the project name"],
+  },
+  organization: {
     type: String,
     required: false,
   },
-  value: {
-    type: String,
+  imagesBefore: {
+    type: [String],
     required: false,
   },
-  startDate: {
-    type: String,
-    required: false,
-  },
-  endDate: {
-    type: String,
-    required: false,
-  },
-  images: {
+  imagesAfter: {
     type: [String],
     required: false,
   },
