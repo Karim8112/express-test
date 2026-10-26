@@ -3,8 +3,12 @@ import { Project } from "../../models/Project.js";
 
 async function GetAllProject(req: express.Request, res: express.Response) {
   try {
-    // console.log("this is the request query: ", req.query);
-    const projects = await Project.find()
+    const filter: Record<string, unknown> = {};
+
+    if (req.query.projectType) {
+      filter.projectType = req.query.projectType;
+    }
+    const projects = await Project.find(filter)
       .populate({
         path: "projectType",
         select: "name",
