@@ -5,27 +5,27 @@ import { Project } from "../../models/Project.js";
 import express from "express";
 import { ProjectType } from "../../models/ProjectType.js";
 
-async function patchProject(
-  req: express.Request<{ id: string }>,
-  res: express.Response,
-) {
+async function patchProject(req: express.Request, res: express.Response) {
   const { id } = req.params;
 
   try {
-    const typeExists = ProjectType.exists({ _id: req.body.ProjectType });
-    if (!typeExists) {
-      res.status(404).json({
+    try {
+      await ProjectType.exists({
+        _id: req.body.projectType,
+      });
+    } catch {
+      return res.status(404).json({
         status: "failed",
         message: "Project Type not exist",
       });
-      return;
     }
 
     // getting the project by id
     const project = await Project.findById(id);
     if (!project) {
-      res.status(404).json({ status: "failed", message: "Project not found" });
-      return;
+      return res
+        .status(404)
+        .json({ status: "failed", message: "Project not found" });
     }
 
     const updaetdBody = req.body;
@@ -107,7 +107,7 @@ async function patchProject(
   } catch (error) {
     res.status(400).json({
       status: "failed",
-      message: error,
+      message: "error",
     });
   }
 }

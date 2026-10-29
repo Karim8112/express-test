@@ -9,7 +9,7 @@ const PostProject: RequestHandler = async (
   res: express.Response,
 ) => {
   try {
-    const typeExists = ProjectType.exists({ _id: req.body.ProjectType });
+    const typeExists = await ProjectType.exists({ _id: req.body.projectType });
 
     if (!typeExists) {
       res.status(404).json({

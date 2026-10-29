@@ -25,7 +25,12 @@ router
   .route(`/project/:id`)
   .delete(protectRoute, DeleteProject /* ,checkId */)
   .get(GetProjectById /* ,checkId */)
-  .patch(protectRoute, patchProject /* ,checkId */);
+  .patch(
+    protectRoute,
+    UploadImages(projectFields),
+    CompressImages(projectFields),
+    patchProject /* ,checkId */,
+  );
 // tours
 router
   .route(`/project`)
