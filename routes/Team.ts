@@ -9,7 +9,7 @@ import protectRoute from "../controllers/Auth/protectRoute.js";
 import {
   createCompressMiddleware,
   createUploadMiddleware,
-} from "../middlewares/multer2.js";
+} from "../middlewares/oneImage.js";
 
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route

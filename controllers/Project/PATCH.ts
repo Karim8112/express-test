@@ -38,6 +38,7 @@ async function patchProject(req: express.Request, res: express.Response) {
     let imagesBeforeUrl: string[] = [];
     let imagesAfterUrl: string[] = [];
 
+    // -----------------------------------------------------------------------------------
     // uploading the main project image if exist
     const mainImage = files?.mainImage?.[0];
 
@@ -49,16 +50,23 @@ async function patchProject(req: express.Request, res: express.Response) {
       mainImageUrl = `https://${config.host}/${imageName}`;
     }
 
-    // in case old images before sent again as URLs
-    if (req.body.imagesBefore) {
-      req.body.imagesBefore.map((url: string) => imagesBeforeUrl.push(url));
+    // -----------------------------------------------------------------------------------
+    // in case old images "before" sent again as URLs
+    const imagesBeforeArray = Array.isArray(req.body.imagesBefore)
+      ? req.body.imagesBefore
+      : req.body.imagesBefore
+        ? [req.body.imagesBefore]
+        : [];
+
+    if (imagesBeforeArray) {
+      imagesBeforeArray.map((url: string) => imagesBeforeUrl.push(url));
     }
 
     // uploadnig imagesBefore if exist
     const imagesBefore = files?.imagesBefore;
 
     if (imagesBefore) {
-      imagesBeforeUrl.length = 0;
+      // imagesBeforeUrl.length = 0;
       imagesBefore.forEach((file, index) => {
         const imageType =
           path.extname(file.originalname).toLowerCase() || "webp";
@@ -75,16 +83,23 @@ async function patchProject(req: express.Request, res: express.Response) {
       });
     }
 
-    // in case old images after sent again as URLs
-    if (req.body.imagesAfter) {
-      req.body.imagesAfter.map((url: string) => imagesAfterUrl.push(url));
+    // -----------------------------------------------------------------------------------
+    // in case old images "after" sent again as URLs
+    const imagesAfterArray = Array.isArray(req.body.imagesAfter)
+      ? req.body.imagesAfter
+      : req.body.imagesAfter
+        ? [req.body.imagesAfter]
+        : [];
+
+    if (imagesAfterArray) {
+      imagesAfterArray.map((url: string) => imagesAfterUrl.push(url));
     }
     // uploading imagesAfter if exist
     // uploadnig imagesBefore if exist
     const imagesAfter = files?.imagesAfter;
 
     if (imagesAfter) {
-      imagesAfterUrl.length = 0;
+      // imagesAfterUrl.length = 0;
       imagesAfter.forEach((file, index) => {
         const imageType =
           path.extname(file.originalname).toLowerCase() || "webp";

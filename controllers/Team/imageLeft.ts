@@ -1,7 +1,6 @@
 import express from "express";
 
 import { uploadForamts, cloudinary } from "../../cloudinary.js";
-import { timeStamp } from "console";
 
 // 1\. Configure Multer to store the file in memory buffer
 

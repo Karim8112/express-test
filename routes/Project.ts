@@ -9,7 +9,7 @@ import {
   CompressImages,
   type FieldConfig,
   UploadImages,
-} from "../middlewares/multerSharp.js";
+} from "../middlewares/multipleImages.js";
 
 const projectFields: FieldConfig[] = [
   { name: "mainImage" },

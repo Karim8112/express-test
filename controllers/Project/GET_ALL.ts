@@ -36,7 +36,6 @@ async function GetAllProject(req: express.Request, res: express.Response) {
       .skip(skip)
       .limit(limit);
 
-    console.log("this is the projects", projects);
     res.status(200).json({
       status: "sucess",
       results: projects.length,
