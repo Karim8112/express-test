@@ -49,6 +49,11 @@ async function patchProject(req: express.Request, res: express.Response) {
       mainImageUrl = `https://${config.host}/${imageName}`;
     }
 
+    // in case old images before sent again as URLs
+    if (req.body.imagesBefore) {
+      req.body.imagesBefore.map((url: string) => imagesBeforeUrl.push(url));
+    }
+
     // uploadnig imagesBefore if exist
     const imagesBefore = files?.imagesBefore;
 
@@ -70,6 +75,10 @@ async function patchProject(req: express.Request, res: express.Response) {
       });
     }
 
+    // in case old images after sent again as URLs
+    if (req.body.imagesAfter) {
+      req.body.imagesAfter.map((url: string) => imagesAfterUrl.push(url));
+    }
     // uploading imagesAfter if exist
     // uploadnig imagesBefore if exist
     const imagesAfter = files?.imagesAfter;
