@@ -35,8 +35,8 @@ async function patchProject(req: express.Request, res: express.Response) {
 
     // starting with images
     let mainImageUrl = project?.mainImage;
-    let imagesBeforeUrl = project?.imagesBefore ?? [];
-    let imagesAfterUrl = project?.imagesAfter ?? [];
+    let imagesBeforeUrl: string[] = [];
+    let imagesAfterUrl: string[] = [];
 
     // uploading the main project image if exist
     const mainImage = files?.mainImage?.[0];
