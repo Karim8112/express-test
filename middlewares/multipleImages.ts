@@ -38,6 +38,7 @@ export interface CompressOptions {
   maxWidth?: number;
   maxHeight?: number;
   quality?: number;
+  effort?: number;
 }
 
 /**
@@ -48,7 +49,12 @@ export const CompressImages = (
   fields: FieldConfig[],
   options: CompressOptions = {},
 ) => {
-  const { maxWidth = 800, maxHeight = 1000, quality = 75 } = options;
+  const {
+    maxWidth = 800,
+    maxHeight = 1000,
+    quality = 75,
+    effort = 4,
+  } = options;
 
   return async (
     req: express.Request,
@@ -77,7 +83,7 @@ export const CompressImages = (
             fit: "inside",
             withoutEnlargement: true,
           })
-          .webp({ quality, effort: 6, smartSubsample: true })
+          .webp({ quality, effort, smartSubsample: true })
           .toBuffer();
 
         // Replace raw buffer in memory with compressed buffer
