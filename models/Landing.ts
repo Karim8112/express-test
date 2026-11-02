@@ -33,6 +33,10 @@ const additionalSectionSchema = new mongoose.Schema({
     type: String,
     required: [true, "please add the image"],
   },
+  title: {
+    type: String,
+    required: [true, "please add title"],
+  },
   text: {
     type: String,
     required: [true, "please add text"],
