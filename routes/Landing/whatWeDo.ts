@@ -30,6 +30,14 @@ router
   )
   .delete(protectRoute, DELETE /* ,checkId */);
 // tours
-router.route(`/what-we-do`).get(protectRoute, GetAll).post(protectRoute, POST);
+router
+  .route(`/what-we-do`)
+  .get(protectRoute, GetAll)
+  .post(
+    protectRoute,
+    createUploadMiddleware(Fields),
+    createCompressMiddleware(Fields, { quality: 100, effort: 4 }),
+    POST,
+  );
 
 export default router;
