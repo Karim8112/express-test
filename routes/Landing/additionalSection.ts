@@ -33,6 +33,11 @@ router
 router
   .route(`/additional-section`)
   .get(protectRoute, GetAll)
-  .post(protectRoute, POST);
+  .post(
+    protectRoute,
+    createUploadMiddleware(Fields),
+    createCompressMiddleware(Fields, { quality: 100, effort: 4 }),
+    POST,
+  );
 
 export default router;
