@@ -45,7 +45,7 @@ const HouseSchema = new mongoose.Schema({
   },
   roomsCount: {
     type: Number,
-    required: [true, "please add the number of rooms"],
+    required: false,
   },
   hasCourtyard: {
     type: Boolean,
@@ -62,6 +62,7 @@ const HouseSchema = new mongoose.Schema({
   },
   images: {
     type: [String],
+    required: false,
     default: [],
   },
 });
