@@ -1,8 +1,8 @@
-import Delete from "../controllers/ProjectType/DELETE.js";
+import Delete from "../controllers/HouseType/DELETE.js";
 import express from "express";
-import GetAll from "../controllers/ProjectType/GET_ALL.js";
-import patch from "../controllers/ProjectType/PATCH.js";
-import post from "../controllers/ProjectType/POST.js";
+import GetAll from "../controllers/HouseType/GET_ALL.js";
+import patch from "../controllers/HouseType/PATCH.js";
+import post from "../controllers/HouseType/POST.js";
 import protectRoute from "../controllers/Auth/protectRoute.js";
 
 // -----------middlewares----------
