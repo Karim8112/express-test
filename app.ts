@@ -10,6 +10,9 @@ import ProjectRouter from "./routes/Project.js";
 import AuthRouter from "./routes/Auth.js";
 import VideoRouter from "./routes/Video.js";
 import ProjectTypeRouter from "./routes/ProjectType.js";
+import HouseTypeRouter from "./routes/HouseType.js";
+import HouseRouter from "./routes/House.js";
+
 //
 import HeroRouter from "./routes/Landing/hero.js";
 import WhatWeDo from "./routes/Landing/whatWeDo.js";
@@ -43,8 +46,13 @@ app.use(express.static("static"));
 app.use(`/${baseURL}`, AuthRouter);
 app.use(`/${baseURL}`, TeamRouter);
 app.use(`/${baseURL}`, ProjectRouter);
-app.use(`/${baseURL}`, VideoRouter);
 app.use(`/${baseURL}`, ProjectTypeRouter);
+app.use(`/${baseURL}`, VideoRouter);
+app.use(`/${baseURL}`, VideoRouter);
+app.use(`/${baseURL}`, HouseTypeRouter);
+app.use(`/${baseURL}`, HouseRouter);
+
+//
 app.use(`/${baseURL}`, HeroRouter);
 app.use(`/${baseURL}`, WhatWeDo);
 app.use(`/${baseURL}`, AdditionalSection);
