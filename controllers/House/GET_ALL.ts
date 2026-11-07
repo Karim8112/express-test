@@ -8,6 +8,7 @@ async function GetAllHouses(req: express.Request, res: express.Response) {
     // Filtering based on Houses type
     if (req.query.houseType) {
       filter.houseType = req.query.houseType;
+      console.log("this is house type", req.query.houseType);
     }
 
     // pagination
@@ -20,8 +21,11 @@ async function GetAllHouses(req: express.Request, res: express.Response) {
       totalHouses = await House.countDocuments(filter);
 
       if (totalHouses <= skip) {
-        res.status(404).json({
+        console.log("this is the total houses found", totalHouses);
+        res.status(200).json({
           status: "failed",
+          total: 0,
+          data: [],
           message: "page not found",
         });
       }

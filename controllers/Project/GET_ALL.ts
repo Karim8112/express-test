@@ -20,8 +20,10 @@ async function GetAllProject(req: express.Request, res: express.Response) {
       totalProjects = await Project.countDocuments(filter);
 
       if (totalProjects <= skip) {
-        res.status(404).json({
+        res.status(200).json({
           status: "failed",
+          total: 0,
+          data: [],
           message: "page not found",
         });
       }
