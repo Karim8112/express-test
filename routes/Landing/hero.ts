@@ -22,7 +22,12 @@ router
   .patch(
     protectRoute,
     createUploadMiddleware(Fields),
-    createCompressMiddleware(Fields, { quality: 100, effort: 4 }),
+    createCompressMiddleware(Fields, {
+      quality: 85,
+      effort: 6,
+      maxHeight: 1440,
+      maxWidth: 2560,
+    }),
     PATCH /* ,checkId */,
   );
 // tours

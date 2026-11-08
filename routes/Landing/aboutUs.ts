@@ -19,7 +19,7 @@ const router = express.Router();
 // -----------middlewares----------
 // router.param('id', checkId) // so way better to use this method instead of using chain with every route
 const Fields: FieldConfig[] = [{ name: "images", maxCount: 20 }];
-const CompSettings: CompressOptions = { effort: 4, quality: 100 };
+const CompSettings: CompressOptions = { effort: 4, quality: 85 };
 
 router
   .route(`/about-us/:id`)

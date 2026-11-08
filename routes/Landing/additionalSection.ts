@@ -36,7 +36,7 @@ router
   .post(
     protectRoute,
     createUploadMiddleware(Fields),
-    createCompressMiddleware(Fields, { quality: 100, effort: 4 }),
+    createCompressMiddleware(Fields, { quality: 85, effort: 6 }),
     POST,
   );
 
