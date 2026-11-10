@@ -16,6 +16,6 @@ const router = express.Router();
 router.route(`/contact-info/:id`).patch(protectRoute, PATCH /* ,checkId */);
 
 // tours
-router.route(`/contact-info`).get(protectRoute, GetAll);
+router.route(`/contact-info`).get(GetAll);
 
 export default router;
